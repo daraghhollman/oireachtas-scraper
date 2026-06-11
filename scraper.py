@@ -8,6 +8,7 @@ from playwright.sync_api import sync_playwright
 from tqdm import tqdm
 import csv
 import sqlite3
+import re
 
 #Creating database
 connection = sqlite3.connect(r"dail-debates.db")
@@ -19,6 +20,7 @@ debate_table = '''create table if not exists debates(
     title text,
     date DATE,
     text text,
+    category text,
     unique (url, id)
 )''' 
 
@@ -74,7 +76,24 @@ cursor.executemany('''
     values(:url, :title, :date, :text)              
 ''', debates)
 
+cursor.execute("""
+               DELETE FROM debates WHERE title LIKE '%Chuaigh an Cathaoirleach Gníomhach%' 
+                OR title LIKE '%Chuaigh an Ceann Comhairle i gceannas%'
+                OR title LIKE '%Comhaltaí Nua a Chur in Aithne%'
+                OR title LIKE '%Message from Select Committee%'                
+               """)
 
+cursor.execute("""UPDATE debates SET category = CASE
+                WHEN title LIKE '%Order of Business%' THEN 'orderbusiness' 
+                WHEN title LIKE '%Business of Dáil%' THEN 'orderbusiness' 
+                WHEN title LIKE '%LEADER%' THEN 'leadersq'
+                WHEN title LIKE '%Priority Questions%' THEN 'priorityq'
+                WHEN title LIKE '%Bill%' THEN 'bills'
+                WHEN title LIKE '%topical%' THEN 'topical'
+                WHEN title LIKE '%motion%' THEN 'motions'
+                WHEN title LIKE '%Questions%' THEN 'otherq'
+                ELSE 'other'
+               END""")
 
 connection.commit() 
 connection.close()

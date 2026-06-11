@@ -12,6 +12,7 @@
     font-size: 25px;
     background: #000052;
      color: white; 
+    padding: 1px;
 }
 
 
@@ -20,4 +21,39 @@
     margin: 10;
     padding: 0;
     font-size: 15px;
+}
+
+.debateindextable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+.debateindextable th {
+    background: #000052;
+    color: white;
+    text-align: left;
+    padding: 12px 12px;
+}
+
+.debateindextable td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+.debateindextable tr:hover {
+    background-color: #f0f0f8;
+}
+
+.debateindextable td a {
+    color: #000052;
+    text-decoration: none;
+}
+
+.debateindextable td a:hover {
+    text-decoration: underline;
+}
+
+.debatetext {
+    white-space: pre-wrap;
 }

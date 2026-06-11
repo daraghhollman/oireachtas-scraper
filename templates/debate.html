@@ -7,6 +7,25 @@
     <div class = debateheader>
         <h2>{{debate.title}}</h2>
         <p>{{debate.date}}</p>
+         <a href="{{ url_for('debate34text', debate_id=debate.id)}}">Debate Text</a>
          </div>
+   
+
+    <table class =debateindextable>
+        <tr>
+            <th>Words</th>
+            <th>Frequency</th>
+            <th>Probability</th>
+        </tr>
+        {%for row in prob_dist%}
+        <tr>
+            <td>{{row.words}}</td>
+            <td>{{row.freq}}</td>
+            <td>{{ "%.2f"|format(row.prob * 100)}}&#37;</td>
+        </tr>
+        {% endfor %}
+        
+
+    </table>
     </body>
 </html>

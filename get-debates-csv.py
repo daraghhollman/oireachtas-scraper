@@ -22,7 +22,7 @@ def main():
 
     base_url = "https://www.oireachtas.ie/en/debates/debate/dail"
 
-    start_time = dt.datetime(2026, 5, 1).date()
+    start_time = dt.datetime(2026, 5, 20).date()
     end_time = dt.datetime.today().date()
 
     # Create list of all possible dates for debates

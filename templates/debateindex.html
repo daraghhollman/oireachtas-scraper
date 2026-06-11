@@ -1,10 +1,29 @@
 <html>
     <head>
     <title>Oireachtas Revealed</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    {% for debate in debates %}
-    <a href="{{ url_for('debate34', debate_id=debate.id)}}">{{ debate.title }}</a> <p>{{ debate.date }}</p>
-{% endfor %}
+     <div class = debateheader>
+        <h1>Debates</h1>
+          </div>
+    <table class =debateindextable>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Category</th>
+        </tr>
+        {% for debate in debates%}
+        <tr>
+            <td><a href="{{ url_for('debate34', debate_id=debate.id)}}">{{ debate.title }}</a></td>
+            <td><p>{{ debate.date }}</p>
+            <td><p>{{ debate.category}}</p></td>
+        </tr>
+         {% endfor %}
+            
+    
+           
+        
+    </table>
 </body>
 </html>

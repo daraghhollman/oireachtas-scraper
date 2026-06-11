@@ -8,6 +8,20 @@
         <h1>Overall Statistics for the 34th Dáil</h1>
           </div>
         <p>This page displays various statistics for the combined content of all debates so far during the 34th Dáil</p>
-      
+    
+    <table class = debateindextable>
+        <tr>
+            <th>Words</th>
+            <th>Frequency</th>
+            <th>Probability</th>
+        </tr>
+        {%for row in full_text%}
+        <tr>
+            <td>{{row.words}}</td>
+            <td>{{row.freq}}</td>
+            <td>{{ "%.2f"|format(row.prob * 100)}}&#37;</td>
+        </tr>
+           {% endfor %}
+    </table>
     </body>
 </html>
